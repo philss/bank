@@ -96,10 +96,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    rspec (3.2.0)
-      rspec-core (~> 3.2.0)
-      rspec-expectations (~> 3.2.0)
-      rspec-mocks (~> 3.2.0)
     rspec-core (3.2.3)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.1)
@@ -107,6 +103,14 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-rails (3.2.1)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
     sass (3.4.19)
@@ -146,7 +150,7 @@ DEPENDENCIES
   byebug
   jquery-rails
   rails (= 4.2.4)
-  rspec
+  rspec-rails
   sass-rails (~> 5.0)
   spring
   sqlite3
