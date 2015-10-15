@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require 'rspec-rails'
 
 # Default config from Rspec installation/recommendation
 RSpec.configure do |config|

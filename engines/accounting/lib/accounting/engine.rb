@@ -11,5 +11,7 @@ module Accounting
       g.helper false
       g.view_specs false
     end
+
+    config.autoload_paths += %W(#{config.root}/app/domain #{config.root}/app/repositories)
   end
 end
