@@ -1,0 +1,7 @@
+<h1>Accounts</h1>
+
+<ul>
+  <% @accounts.each do |account| %>
+    <li><%= account.holder %> - balance: <%= number_to_currency(account.balance) %></li>
+  <% end %>
+</ul>
