@@ -7,7 +7,8 @@ module Accounting
     describe '.transfer' do
       subject(:transfer) { use_case.transfer(from_account_id: source_account.id,
                                              to_account_id: destination_account.id,
-                                             amount: 200) }
+                                             amount: amount) }
+      let(:amount) { 200 }
 
       let!(:source_account) { Account.create!(holder: 'Alice', balance: balance1) }
       let!(:destination_account) { Account.create!(holder: 'Maria', balance: balance2) }
@@ -25,7 +26,13 @@ module Accounting
           }.from([500, 0]).to([300, 200])
         end
 
-        it { is_expected.to eq(:ok) }
+        it { is_expected.to eq(:done) }
+
+        it 'dispatch the `transfer_done` event' do
+          expect(Accounting).to receive(:publish_event).with(:transfer_done, kind_of(Trade))
+
+          transfer
+        end
       end
 
       context 'when the source account does not have balance' do
@@ -41,6 +48,12 @@ module Accounting
         end
 
         it { is_expected.to eq(:not_enough_balance) }
+
+        it 'does not dispatch the `transfer_done` event' do
+          expect(Accounting).to_not receive(:publish_event)
+
+          transfer
+        end
       end
     end
   end

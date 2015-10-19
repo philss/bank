@@ -7,11 +7,15 @@ module Accounting
 
       return :not_enough_balance if balance < amount
 
-      AccountRepository.transfer_money(from_account_id: from_account_id,
-                                       to_account_id: to_account_id,
-                                       amount: amount)
+      trade = Trade.new(from_account_id: from_account_id,
+                        to_account_id: to_account_id,
+                        amount: amount)
 
-      :ok
+      AccountRepository.transfer_money(trade)
+
+      Accounting.publish_event(:transfer_done, trade)
+
+      trade.status
     end
   end
 end
