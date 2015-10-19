@@ -10,7 +10,7 @@ module Accounting
     # Listener should be a constant or a string representing a constant,
     # and that class/module must respond to `.execute`.
     def add_event_listener(event, listener)
-      event_listeners[event] << listener.to_s
+      event_listeners[event] = event_listeners[event] + [listener.to_s]
     end
 
     def publish_event(event, *args)
