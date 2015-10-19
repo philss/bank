@@ -23,5 +23,9 @@ module Accounting
     def cancel!
       @status = :cancelled
     end
+
+    def to_s
+      "<Trade from_account_id: #{from_account_id}, to_account_id: #{to_account_id}, amount: #{amount}, status: #{status}>"
+    end
   end
 end
